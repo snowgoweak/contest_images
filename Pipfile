@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+SQLAlchemy = "*"
+psycopg2-binary = "*"
+pydantic = "*"
+uvicorn = "*"
+python-multipart = "*"
+aiohttp = "*"
+aiofiles = "*"
+pillow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+
+[packages.databases]
+extras = [ "postgresql",]
