@@ -31,12 +31,10 @@ async def create_file(file: UploadFile = File(None), url: Optional[str] = None,)
                                        height=height)
     if url:
         filename = await async_request_file(url)
-        im = Image.open(f'files/{file.filename}')
+        im = Image.open(f'files/{filename}')
         (width, height) = im.size
-        print(type(width), type(height), width, height)
-        return await create_images(name=file.filename,
+        return await create_images(name=filename,
                                    url=url,
-                                   picture=f'files/{file.filename}',
+                                   picture=f'files/{filename}',
                                    width=width,
                                    height=height)
-
