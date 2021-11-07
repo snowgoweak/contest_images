@@ -1,4 +1,5 @@
 import sqlalchemy as sa
+import typing as t
 from sqlalchemy import literal_column
 import app
 from app.db import metadata
@@ -26,3 +27,19 @@ async def create_images(name: str, url: str, picture: str, width: int, height: i
     row = await app.database.fetch_one(query)
     return row_to_dict(row)
 
+
+async def get_images_all() -> t.Optional[dict]:
+    query = images.select()
+    row = await app.database.fetch_all(query)
+    return row
+
+
+async def get_images_by_id(img_id: int) -> t.Optional[dict]:
+    query = images.select().where(images.c.id == img_id)
+    row = await app.database.fetch_one(query)
+    return row
+
+
+async def delete_image_by_id(img_id: int):
+    query = images.delete().where(images.c.id == img_id)
+    await app.database.execute(query)
