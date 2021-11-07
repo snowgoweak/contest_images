@@ -10,4 +10,5 @@ async def async_request_file(url: str):
                 file = await aiofiles.open(f'files/{filename}', mode='wb')
                 await file.write(await resp.read())
                 await file.close()
+                return filename
 
